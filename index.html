@@ -13,7 +13,7 @@
       <header class="header">
         <p class="eyebrow">TGM Drummers</p>
         <h1>Collections</h1>
-        <p class="subtitle">Record a collection payment</p>
+        <p class="subtitle">Maintaining our kits for God's glory!</p>
       </header>
 
       <form id="collectionForm">
@@ -103,9 +103,7 @@
 
           <section class="payment-panel" id="gcashInfo" hidden>
             <h2>GCash Transfer Details</h2>
-            <p class="detail">
-              <strong>Account Name:</strong> Airha Marie G.
-            </p>
+            <p class="detail"><strong>Account Name:</strong> Airha Marie G.</p>
             <p class="detail"><strong>Account Number:</strong> 0975 272 3319</p>
             <div class="qr-wrap">
               <strong>GCash QR Code</strong>
@@ -127,9 +125,7 @@
               <strong>Account Name:</strong> Fernand Anthony Tripulca
             </p>
             <p class="detail"><strong>Bank:</strong> BPI</p>
-            <p class="detail">
-              <strong>Account Number:</strong> 0959427429
-            </p>
+            <p class="detail"><strong>Account Number:</strong> 0959427429</p>
             <div class="qr-wrap">
               <strong>Bank QR Code</strong>
               <div class="qr-placeholder" id="bankQrPlaceholder">
@@ -151,23 +147,27 @@
         </div>
 
         <div class="field">
-          <label for="evidence"
-            >Receipt <span class="optional">(Optional)</span></label
-          >
-          <label class="upload-box" for="evidence">
-            <strong>Upload or capture receipt</strong>
-            <span class="hint"
-              >Choose an image from your device or use your camera when
-              supported.</span
-            >
-            <input
-              type="file"
-              id="evidence"
-              name="evidence"
-              accept="image/*"
-              capture="environment"
-            />
-          </label>
+          <label for="evidence">Receipt</label>
+
+          <div class="receipt-actions">
+            <button type="button" class="receipt-option" id="galleryButton">
+              🖼️ Choose from Gallery
+            </button>
+
+            <button type="button" class="receipt-option" id="cameraButton">
+              📷 Take a Photo
+            </button>
+          </div>
+
+          <input
+            type="file"
+            id="evidence"
+            name="evidence"
+            accept="image/*"
+            required
+            class="file-input-hidden"
+          />
+
           <img
             class="preview"
             id="evidencePreview"

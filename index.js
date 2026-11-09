@@ -17,7 +17,7 @@
   const CONFIG = {
     APPS_SCRIPT_URL:
       "https://script.google.com/macros/s/AKfycbwZZdshvz0gSOvEkKyiG_XK1H6UNhn_n1K9ewFUE3UdwNqHGTbL4stPG4SkVPp5Rh5D_A/exec",
-    MAX_RECEIPT_SIZE_MB: 5,
+    MAX_RECEIPT_SIZE_MB: 1024,
   };
 
   document.addEventListener("DOMContentLoaded", () => {
@@ -31,6 +31,8 @@
     const fileName = document.getElementById("fileName");
     const submitButton = document.getElementById("submitButton");
     const statusMessage = document.getElementById("statusMessage");
+    const galleryButton = document.getElementById("galleryButton");
+    const cameraButton = document.getElementById("cameraButton");
 
     if (
       !form ||
@@ -42,7 +44,9 @@
       !receiptPreview ||
       !fileName ||
       !submitButton ||
-      !statusMessage
+      !statusMessage ||
+      !galleryButton ||
+      !cameraButton
     ) {
       console.error(
         "TGM Drummers Collections: One or more required HTML elements are missing.",
@@ -141,6 +145,16 @@
       clearStatus();
     });
 
+    galleryButton.addEventListener("click", () => {
+      receiptInput.removeAttribute("capture");
+      receiptInput.click();
+    });
+
+    cameraButton.addEventListener("click", () => {
+      receiptInput.setAttribute("capture", "environment");
+      receiptInput.click();
+    });
+
     // Form submission.
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
@@ -181,6 +195,12 @@
           `Receipt image must be ${CONFIG.MAX_RECEIPT_SIZE_MB} MB or smaller.`,
           "error",
         );
+        return;
+      }
+
+      if (!receiptInput.files || receiptInput.files.length === 0) {
+        showStatus("Please upload or take a photo of your receipt.", "error");
+        receiptInput.focus();
         return;
       }
 
