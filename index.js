@@ -247,7 +247,7 @@
         });
 
         showStatus(
-          "Your submission request was sent. Please verify the Google Form response and the receipt in Google Drive before submitting again.",
+          "Your donation has been accepted. Please be advised that manual validation of cash transfer may still be subject for bank/wallet check. Thank you, and God bless!",
           "info",
         );
 
