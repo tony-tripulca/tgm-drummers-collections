@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#172554" />
+    <title>TGM Drummers Collections</title>
+    <link rel="stylesheet" href="index.css" />
+    <script src="index.js" defer></script>
+  </head>
+  <body>
+    <main class="app">
+      <header class="header">
+        <p class="eyebrow">TGM Drummers</p>
+        <h1>Collections</h1>
+        <p class="subtitle">Record a collection payment</p>
+      </header>
+
+      <form id="collectionForm">
+        <div class="field">
+          <label for="name">Name</label>
+          <select id="name" name="name" required>
+            <option value="" selected disabled>Select a name</option>
+            <option>Angello</option>
+            <option>Daryll</option>
+            <option>Edge</option>
+            <option>Genesis</option>
+            <option>Jorim</option>
+            <option>Mae</option>
+            <option>Noel</option>
+            <option>Othniel</option>
+            <option>FA</option>
+          </select>
+        </div>
+
+        <fieldset class="field">
+          <legend>Amount</legend>
+          <div class="choices amount-choices">
+            <label class="choice"
+              ><input
+                type="radio"
+                name="amountOption"
+                value="20"
+                required
+              /><span>₱20</span></label
+            >
+            <label class="choice"
+              ><input type="radio" name="amountOption" value="50" /><span
+                >₱50</span
+              ></label
+            >
+            <label class="choice"
+              ><input type="radio" name="amountOption" value="100" /><span
+                >₱100</span
+              ></label
+            >
+            <label class="choice"
+              ><input type="radio" name="amountOption" value="200" /><span
+                >₱200</span
+              ></label
+            >
+            <label class="choice"
+              ><input type="radio" name="amountOption" value="500" /><span
+                >₱500</span
+              ></label
+            >
+            <label class="choice"
+              ><input type="radio" name="amountOption" value="1000" /><span
+                >₱1,000</span
+              ></label
+            >
+            <label class="choice"
+              ><input
+                type="radio"
+                name="amountOption"
+                value="other"
+                id="otherAmountOption"
+              /><span>Others</span></label
+            >
+          </div>
+          <div id="otherAmountWrap" class="other-amount" hidden>
+            <label for="otherAmount">Enter amount (₱)</label>
+            <input
+              id="otherAmount"
+              name="otherAmount"
+              type="number"
+              min="0.01"
+              step="0.01"
+              inputmode="decimal"
+              placeholder="Enter custom amount"
+            />
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <label for="paymentMethod">Payment Method</label>
+          <select id="paymentMethod" name="paymentMethod" required>
+            <option value="" selected disabled>Select payment method</option>
+            <option value="GCASH">GCASH</option>
+            <option value="BANK TRANSFER">BANK TRANSFER</option>
+            <option value="F2F">F2F</option>
+          </select>
+
+          <section class="payment-panel" id="gcashInfo" hidden>
+            <h2>GCash Transfer Details</h2>
+            <p class="detail">
+              <strong>Account Name:</strong> Airha Marie G.
+            </p>
+            <p class="detail"><strong>Account Number:</strong> 0975 272 3319</p>
+            <div class="qr-wrap">
+              <strong>GCash QR Code</strong>
+              <div class="qr-placeholder" id="gcashQrPlaceholder">
+                Add your GCash QR image at<br /><code>images/gcash-qr.png</code>
+              </div>
+              <img
+                id="gcashQrImage"
+                src="images/gcash.png"
+                alt="GCash QR code"
+                hidden
+              />
+            </div>
+          </section>
+
+          <section class="payment-panel" id="bankInfo" hidden>
+            <h2>Bank Transfer Details</h2>
+            <p class="detail">
+              <strong>Account Name:</strong> Fernand Anthony Tripulca
+            </p>
+            <p class="detail"><strong>Bank:</strong> BPI</p>
+            <p class="detail">
+              <strong>Account Number:</strong> 0959427429
+            </p>
+            <div class="qr-wrap">
+              <strong>Bank QR Code</strong>
+              <div class="qr-placeholder" id="bankQrPlaceholder">
+                Add your bank QR image at<br /><code>images/bank-qr.png</code>
+              </div>
+              <img
+                id="bankQrImage"
+                src="images/bpi.png"
+                alt="Bank transfer QR code"
+                hidden
+              />
+            </div>
+          </section>
+
+          <section class="payment-panel" id="f2fInfo" hidden>
+            <h2>Face-to-Face Payment</h2>
+            <p>Please hand the payment directly to the assigned collector.</p>
+          </section>
+        </div>
+
+        <div class="field">
+          <label for="evidence"
+            >Receipt <span class="optional">(Optional)</span></label
+          >
+          <label class="upload-box" for="evidence">
+            <strong>Upload or capture receipt</strong>
+            <span class="hint"
+              >Choose an image from your device or use your camera when
+              supported.</span
+            >
+            <input
+              type="file"
+              id="evidence"
+              name="evidence"
+              accept="image/*"
+              capture="environment"
+            />
+          </label>
+          <img
+            class="preview"
+            id="evidencePreview"
+            alt="Receipt preview"
+            hidden
+          />
+          <span class="hint file-name" id="fileName">No image selected</span>
+        </div>
+
+        <div class="field">
+          <label for="notes"
+            >Notes <span class="optional">(Optional)</span></label
+          >
+          <textarea
+            id="notes"
+            name="notes"
+            rows="4"
+            placeholder="Add remarks or other details..."
+          ></textarea>
+        </div>
+
+        <button id="submitButton" type="submit">Submit Collection</button>
+        <p
+          id="statusMessage"
+          class="status"
+          role="status"
+          aria-live="polite"
+        ></p>
+        <p class="footer">TGM Drummers Collections</p>
+      </form>
+    </main>
+  </body>
+</html>
